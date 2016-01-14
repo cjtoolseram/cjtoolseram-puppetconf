@@ -115,15 +115,15 @@ Base output of puppet.conf from the predefined base classes.
 Master of Master:
 ```
 [main]
-    certname = pe-201531-master.puppetdebug.vlan
-    server = pe-201531-master.puppetdebug.vlan
-    user  = pe-puppet
-    group = pe-puppet
-    archive_files = true
-    archive_file_server = pe-201531-master.puppetdebug.vlan
-    module_groups = base+pe_only
-    environmentpath = /etc/puppetlabs/code/environments
-    ca_server = pe-201531-master.puppetdebug.vlan
+certname = pe-201531-master.puppetdebug.vlan
+server = pe-201531-master.puppetdebug.vlan
+user  = pe-puppet
+group = pe-puppet
+archive_files = true
+archive_file_server = pe-201531-master.puppetdebug.vlan
+module_groups = base+pe_only
+environmentpath = /etc/puppetlabs/code/environments
+ca_server = pe-201531-master.puppetdebug.vlan
 
 [agent]
     graph = true
@@ -191,6 +191,7 @@ Class `puppetconf::baseconf::mom`:
 <tr><td>reports_to</td><td>=</td><td>puppetdb</td></tr>
 <tr><td>graph</td><td>=</td><td>true</td></tr>
 </table>
+<br/>
 
 Class `puppetconf::baseconf::cm`:
 <table border = "0">
@@ -208,12 +209,15 @@ Class `puppetconf::baseconf::cm`:
 <tr><td>always_cache_features</td><td>=</td><td>true</td></tr>
 <tr><td>reports_to</td><td>=</td><td>puppetdb</td></tr>
 </table>
+<br/>
+
 
 Class `puppetconf::baseconf::agent`:
 <table border = "0">
 <tr><td>master</td><td>=</td><td>undef</td></tr>
 <tr><td>caserver</td><td>=</td><td>undef</td></tr>
 </table>
+<br/>
 
 The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:
 <table border = "0">
@@ -223,6 +227,7 @@ The above variables have the same name as Puppetlabs configuration attributes. T
 <tr><td>ca_boolean</td><td>-></td><td>ca</td></tr>
 <tr><td>reports_to</td><td>-></td><td>reports</td></tr>
 </table>
+<br/>
 
 You may also visit the [Configuration Reference](https://docs.puppetlabs.com/references/latest/configuration.html) for further reference.
 
