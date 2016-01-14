@@ -1,23 +1,24 @@
-class puppetconf::baseconf::mom ($caserver = $trusted['certname'],
-	$archive_files = true,
-	$peuser = 'pe-puppet',
-	$pegroup = 'pe-puppet',
-	$archive_file_server = $trusted['certname'],
-	$module_groups = 'base+pe_only',
-	$environmentpath = '/etc/puppetlabs/code/environments',
-	$app_management = false,
-	$node_terminus = 'classifier',
-	$storeconfigs = true,
-	$storeconfigs_backend = 'puppetdb',
-	$always_cache_features = true,
-	$reports = 'puppetdb',
-	$graph = true){
+#class for mom section with predefined values
+class puppetconf::baseconf::mom ($caserver = $::trusted['certname'],
+  $archive_files = true,
+  $peuser = 'pe-puppet',
+  $pegroup = 'pe-puppet',
+  $archive_file_server = $::trusted['certname'],
+  $module_groups = 'base+pe_only',
+  $environmentpath = '/etc/puppetlabs/code/environments',
+  $app_management = false,
+  $node_terminus = 'classifier',
+  $storeconfigs = true,
+  $storeconfigs_backend = 'puppetdb',
+  $always_cache_features = true,
+  $reports_to = 'puppetdb',
+  $graph = true){
   ## section main config
   puppetconf::main { 'certname':
-    value     => $trusted['certname'],
+    value     => $::trusted['certname'],
   }
   puppetconf::main {'server':
-    value     => $trusted['certname'],
+    value     => $::trusted['certname'],
   }
 
   puppetconf::main { 'user':
@@ -30,7 +31,7 @@ class puppetconf::baseconf::mom ($caserver = $trusted['certname'],
 
   if $archive_files {
     puppetconf::main {'archive_files':
-      value     => 'true',
+      value     => true,
     }
 
     puppetconf::main {'archive_file_server':
@@ -53,28 +54,28 @@ class puppetconf::baseconf::mom ($caserver = $trusted['certname'],
   ## section master config
   puppetconf::master {'app_management':
     value     => $app_management,
-  }  
+  }
 
   puppetconf::master {'node_terminus':
     value     => $node_terminus,
-  }  
+  }
   
   if $storeconfigs {
     puppetconf::master {'storeconfigs':
       value     => $storeconfigs,
-    }  
+    }
 
     puppetconf::master {'storeconfigs_backend':
       value     => $storeconfigs_backend,
     }
-  }   
+  }
 
   puppetconf::master {'reports':
-    value     => $reports,
+    value     => $reports_to,
   }
 
   puppetconf::master {'certname':
-    value     => $trusted['certname'],
+    value     => $::trusted['certname'],
   }
 
   puppetconf::master {'always_cache_features':

@@ -187,7 +187,7 @@ Class `puppetconf::baseconf::mom`:
 `storeconfigs`          = `true`
 `storeconfigs_backend`  = `puppetdb`
 `always_cache_features` = `true`
-`reports`               = `puppetdb`
+`reports_to`            = `puppetdb`
 `graph`                 = `true`
 
 Class `puppetconf::baseconf::cm`:
@@ -203,6 +203,7 @@ Class `puppetconf::baseconf::cm`:
 `storeconfigs`          = `true`
 `storeconfigs_backend`  = `puppetdb`
 `always_cache_features` = `true`
+`reports_to`            = `puppetdb`
 
 Class `puppetconf::baseconf::agent`:
 `master`   = <font color="red">`undef`</font>
@@ -213,6 +214,7 @@ The above variables have the same name as Puppetlabs configuration attributes. T
 `pegroup`    -> `group`
 `caserver`   -> `ca_server`
 `ca_boolean` -> `ca`
+`reports_to` -> `reports`
 
 You may also visit the [Configuration Reference](https://docs.puppetlabs.com/references/latest/configuration.html) for further reference.
 

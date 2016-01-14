@@ -1,5 +1,6 @@
-class puppetconf::baseconf::cm ($master = undef, 
-  $caserver = undef, 
+#class for cm section with predefined values
+class puppetconf::baseconf::cm ($master = undef,
+  $caserver = undef,
   $module_groups = 'base+pe_only',
   $peuser = 'pe-puppet',
   $pegroup = 'pe-puppet',
@@ -9,6 +10,7 @@ class puppetconf::baseconf::cm ($master = undef,
   $node_terminus = 'classifier',
   $storeconfigs = true,
   $storeconfigs_backend = 'puppetdb',
+  $reports_to = 'puppetdb',
   $always_cache_features = true){
   ## section main config
   puppetconf::main { 'server':
@@ -42,28 +44,28 @@ class puppetconf::baseconf::cm ($master = undef,
 
   puppetconf::master { 'app_management':
     value     => $app_management,
-  }  
+  }
 
   puppetconf::master { 'node_terminus':
     value     => $node_terminus,
-  }  
+  }
 
   if $storeconfigs {
     puppetconf::master { 'storeconfigs':
       value     => $storeconfigs,
-    }  
+    }
 
     puppetconf::master { 'storeconfigs_backend':
       value     => $storeconfigs_backend,
     }
-  }    
+  }
 
   puppetconf::master { 'reports':
-    value     => $reports,
+    value     => $reports_to,
   }
 
   puppetconf::master { 'certname':
-    value     => $trusted['certname'],
+    value     => $::trusted['certname'],
   }
 
   puppetconf::master { 'always_cache_features':
@@ -72,6 +74,6 @@ class puppetconf::baseconf::cm ($master = undef,
 
   ## section agent config
   puppetconf::agent { 'certname':
-    value     => $trusted['certname'],
+    value     => $::trusted['certname'],
   }
 }
