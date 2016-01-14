@@ -174,47 +174,47 @@ certname = agent.puppetdebug.vlan
 ## Variables
 Below are the list of default value in each predefined class:
 
-Class `puppetconf::baseconf::mom`:
-`caserver`              = `$trusted['certname']`
-`archive_files`         = `true`
-`peuser`                = `pe-puppet`
-`pegroup`               = `pe-puppet`
-`archive_file_server`   = `$trusted['certname']`
-`module_groups`         = `base+pe_only`
-`environmentpath`       = `/etc/puppetlabs/code/environments`
-`app_management`        = `false`
-`node_terminus`         = `classifier`
-`storeconfigs`          = `true`
-`storeconfigs_backend`  = `puppetdb`
-`always_cache_features` = `true`
-`reports_to`            = `puppetdb`
-`graph`                 = `true`
+Class `puppetconf::baseconf::mom`:<br/>
+`caserver`              = `$trusted['certname']`<br/>
+`archive_files`         = `true`<br/>
+`peuser`                = `pe-puppet`<br/>
+`pegroup`               = `pe-puppet`<br/>
+`archive_file_server`   = `$trusted['certname']`<br/>
+`module_groups`         = `base+pe_only`<br/>
+`environmentpath`       = `/etc/puppetlabs/code/environments`<br/>
+`app_management`        = `false`<br/>
+`node_terminus`         = `classifier`<br/>
+`storeconfigs`          = `true`<br/>
+`storeconfigs_backend`  = `puppetdb`<br/>
+`always_cache_features` = `true`<br/>
+`reports_to`            = `puppetdb`<br/>
+`graph`                 = `true`<br/>
 
-Class `puppetconf::baseconf::cm`:
-`master`                = `undef`
-`caserver`              = `undef`
-`module_groups`         = `base+pe_only`
-`peuser`                = `pe-puppet`
-`pegroup`               = `pe-puppet`
-`environmentpath`       = `/etc/puppetlabs/code/environments`
-`ca_boolean`            = `false`
-`app_management`        = `true`
-`node_terminus`         = `classifier`
-`storeconfigs`          = `true`
-`storeconfigs_backend`  = `puppetdb`
-`always_cache_features` = `true`
-`reports_to`            = `puppetdb`
+Class `puppetconf::baseconf::cm`:<br/>
+`master`                = `undef`<br/>
+`caserver`              = `undef`<br/>
+`module_groups`         = `base+pe_only`<br/>
+`peuser`                = `pe-puppet`<br/>
+`pegroup`               = `pe-puppet`<br/>
+`environmentpath`       = `/etc/puppetlabs/code/environments`<br/>
+`ca_boolean`            = `false`<br/>
+`app_management`        = `true`<br/>
+`node_terminus`         = `classifier`<br/>
+`storeconfigs`          = `true`<br/>
+`storeconfigs_backend`  = `puppetdb`<br/>
+`always_cache_features` = `true`<br/>
+`reports_to`            = `puppetdb`<br/>
 
-Class `puppetconf::baseconf::agent`:
-`master`   = `undef`
-`caserver` = `undef`
+Class `puppetconf::baseconf::agent`:<br/>
+`master`   = `undef`<br/>
+`caserver` = `undef`<br/>
 
-The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:
-`peuser`     -> `user`
-`pegroup`    -> `group`
-`caserver`   -> `ca_server`
-`ca_boolean` -> `ca`
-`reports_to` -> `reports`
+The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:<br/>
+`peuser`     -> `user`<br/>
+`pegroup`    -> `group`<br/>
+`caserver`   -> `ca_server`<br/>
+`ca_boolean` -> `ca`<br/>
+`reports_to` -> `reports`<br/>
 
 You may also visit the [Configuration Reference](https://docs.puppetlabs.com/references/latest/configuration.html) for further reference.
 
