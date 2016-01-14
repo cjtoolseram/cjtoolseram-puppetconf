@@ -1,14 +1,14 @@
 {
   "name": "cjtoolseram-puppetconf",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "cjtoolseram",
   "summary": null,
   "license": "Apache-2.0",
   "source": "",
-  "project_page": null,
-  "issues_url": null,
+  "project_page": "https://github.com/cjtoolseram/cjtoolseram-puppetconf",
+  "issues_url": "https://github.com/cjtoolseram/cjtoolseram-puppetconf/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-inifile","version_requirement":">= 1.4.3"}
   ],
   "data_provider": null
 }

@@ -11,82 +11,67 @@ class puppetconf::baseconf::cm ($master = undef,
   $storeconfigs_backend = 'puppetdb',
   $always_cache_features = true){
   ## section main config
-  puppetconf::main {
-    attribute => 'server',
+  puppetconf::main { 'server':
     value     => $master,
   }
 
-  puppetconf::main {
-    attribute => 'ca_server',
+  puppetconf::main { 'ca_server':
     value     => $caserver,
   }
 
-  puppetconf::main {
-    attribute => 'module_groups',
+  puppetconf::main { 'module_groups':
     value     => $module_groups,
   }
 
-  puppetconf::main {
-    attribute => 'environmentpath',
+  puppetconf::main { 'environmentpath':
     value     => $environmentpath,
   }
 
-  puppetconf::main {
-    attribute => 'user',
+  puppetconf::main { 'user':
     value     => $peuser,
   }
 
-  puppetconf::main {
-    attribute => 'group',
+  puppetconf::main { 'group':
     value     => $pegroup,
   }
 
   ## section master config
-  puppetconf::master {
-    attribute => 'ca',
+  puppetconf::master {'ca':
     value     => $ca_boolean,
   }
 
-  puppetconf::master {
-    attribute => 'app_management',
+  puppetconf::master { 'app_management':
     value     => $app_management,
   }  
 
-  puppetconf::master {
-    attribute => 'node_terminus',
+  puppetconf::master { 'node_terminus':
     value     => $node_terminus,
   }  
 
   if $storeconfigs {
-    puppetconf::master {
-      attribute => 'storeconfigs',
+    puppetconf::master { 'storeconfigs':
       value     => $storeconfigs,
     }  
 
-    puppetconf::master {
-      attribute => 'storeconfigs_backend',
+    puppetconf::master { 'storeconfigs_backend':
       value     => $storeconfigs_backend,
     }
   }    
 
-  puppetconf::master {
-    attribute => 'reports',
+  puppetconf::master { 'reports':
     value     => $reports,
   }
 
-  puppetconf::master {
-    attribute => 'certname',
-    value     => $::certname,
+  puppetconf::master { 'certname':
+    value     => $trusted['certname'],
   }
 
-  puppetconf::master {
-    attribute => 'always_cache_features',
+  puppetconf::master { 'always_cache_features':
     value     => $always_cache_features,
   }
 
   ## section agent config
-  puppetconf::agent {
-    attribute => 'certname',
-    value     => $::certname,
+  puppetconf::agent { 'certname':
+    value     => $trusted['certname'],
   }
 }

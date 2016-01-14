@@ -3,14 +3,12 @@
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with puppetconf](#setup)
-    * [What puppetconf affects](#what-puppetconf-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with puppetconf](#beginning-with-puppetconf)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+2. [Easy Setup](#easy-setup)
+3. [Usage](#usage)
+4. [Reference](#reference)
+5. [Variables](#variables)
+6. [Limitations](#limitations)
+7. [Development](#development)
 
 ## Description
 
@@ -18,61 +16,211 @@ This module is use to managed all your puppet.conf
 
 NOTE: This module does not install agent!
 
-## Setup
+## Easy Setup
 
-### What puppetconf affects **OPTIONAL**
+For Master of Master Puppet.conf configuration
+```
+class { 'puppetconf::baseconf::mom':
+}
+```
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+For Compile Master Puppet.conf configuration
+```
+class { 'puppetconf::baseconf::cm':
+  master   => 'mom.puppetdebug.vlan',
+  caserver => 'mom.puppetdebug.vlan',
+}
+```
 
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
-
-### Beginning with puppetconf
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+For Agents Puppet.conf configuration
+```
+class { 'puppetconf::baseconf::agent':
+  master   => 'mom.puppetdebug.vlan',
+  caserver => 'mom.puppetdebug.vlan',
+}
+```
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+There are 3 define types which are meant for the sections in puppet.conf
+* [main]
+* [master]
+* [agent]
+
+section *[main]*
+```
+puppetconf::main { 'runinterval':
+  value     => '1h',
+}
+```
+
+section *[master]*
+```
+puppetconf::main { 'environment_timeout':
+  value     => '0',
+}
+```
+
+section *[agent]*
+```
+puppetconf::main { 'certname':
+  value     => 'agent.puppetdebug.vlan',
+}
+```
+
+There are also base classes with specific set of configuration. You can just include them in your classifier.
+
+Master of Master:
+```
+class { 'puppetconf::baseconf::mom':
+}
+```
+
+Compile Master:
+```
+class { 'puppetconf::baseconf::cm':
+  master   => 'mom.puppetdebug.vlan',
+  caserver => 'mom.puppetdebug.vlan',
+}
+```
+
+Agent:
+```
+class { 'puppetconf::baseconf::agent':
+  master   => 'mom.puppetdebug.vlan',
+  caserver => 'mom.puppetdebug.vlan',
+}
+```
+
+You can extend the classes by writing a wrapper module. E.g.
+
+```
+class wrapper {
+  class { 'puppetconf::baseconf::agent':
+    master   => 'mom.puppetdebug.vlan',
+    caserver => 'mom.puppetdebug.vlan',
+  }
+
+  puppetconf::main { 'environment_timeout':
+    value     => '180',
+  }
+}
+```
+This will add *environment_timeout = 180* to the main section of this config.
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+Base output of puppet.conf from the predefined base classes.
+
+Master of Master:
+```
+[main]
+    certname = pe-201531-master.puppetdebug.vlan
+    server = pe-201531-master.puppetdebug.vlan
+    user  = pe-puppet
+    group = pe-puppet
+    archive_files = true
+    archive_file_server = pe-201531-master.puppetdebug.vlan
+    module_groups = base+pe_only
+    environmentpath = /etc/puppetlabs/code/environments
+    ca_server = pe-201531-master.puppetdebug.vlan
+
+[agent]
+    graph = true
+
+[master]
+app_management = true
+node_terminus = classifier
+storeconfigs = true
+storeconfigs_backend = puppetdb
+reports = puppetdb
+certname = pe-201531-master.puppetdebug.vlan
+always_cache_features = true
+```
+
+Compile Master:
+```
+[main]
+server = mom.puppetdebug.vlan
+module_groups = base+pe_only
+environmentpath = /etc/puppetlabs/code/environments
+user = pe-puppet
+group = pe-puppet
+ca_server = mom.puppetdebug.vlan
+[agent]
+certname = cm.puppetdebug.vlan
+
+[master]
+app_management = true
+node_terminus = classifier
+storeconfigs = true
+storeconfigs_backend = puppetdb
+reports = puppetdb
+certname = cm.puppetdebug.vlan
+always_cache_features = true
+ca = false
+```
+
+Agent:
+```
+[main]
+server = mom.puppetdebug.vlan
+ca_server = mom.puppetdebug.vlan
+
+[agent]
+certname = agent.puppetdebug.vlan
+```
+
+## Variables
+Below are the list of default value in each predefined class:
+
+Class `puppetconf::baseconf::mom`:
+`caserver`              = `$trusted['certname']`
+`archive_files`         = `true`
+`peuser`                = `pe-puppet`
+`pegroup`               = `pe-puppet`
+`archive_file_server`   = `$trusted['certname']`
+`module_groups`         = `base+pe_only`
+`environmentpath`       = `/etc/puppetlabs/code/environments`
+`app_management`        = `false`
+`node_terminus`         = `classifier`
+`storeconfigs`          = `true`
+`storeconfigs_backend`  = `puppetdb`
+`always_cache_features` = `true`
+`reports`               = `puppetdb`
+`graph`                 = `true`
+
+Class `puppetconf::baseconf::cm`:
+`master`                = <font color="red">`undef`</font>
+`caserver`              = <font color="red">`undef`</font>
+`module_groups`         = `base+pe_only`
+`peuser`                = `pe-puppet`
+`pegroup`               = `pe-puppet`
+`environmentpath`       = `/etc/puppetlabs/code/environments`
+`ca_boolean`            = `false`
+`app_management`        = `true`
+`node_terminus`         = `classifier`
+`storeconfigs`          = `true`
+`storeconfigs_backend`  = `puppetdb`
+`always_cache_features` = `true`
+
+Class `puppetconf::baseconf::agent`:
+`master`   = <font color="red">`undef`</font>
+`caserver` = <font color="red">`undef`</font>
+
+The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:
+`peuser`     -> `user`
+`pegroup`    -> `group`
+`caserver`   -> `ca_server`
+`ca_boolean` -> `ca`
+
+You may also visit the [Configuration Reference](https://docs.puppetlabs.com/references/latest/configuration.html) for further reference.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+This module will only manage puppet.conf file but will not do any installation on the agent. Any configuration not under a section will not be modified or removed. This also applies to comments!
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Feel free to hack around and pull request to add any improvement. Don't be shy!
 
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
