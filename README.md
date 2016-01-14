@@ -174,47 +174,55 @@ certname = agent.puppetdebug.vlan
 ## Variables
 Below are the list of default value in each predefined class:
 
-Class `puppetconf::baseconf::mom`:<br/>
-`caserver`              = `$trusted['certname']`<br/>
-`archive_files`         = `true`<br/>
-`peuser`                = `pe-puppet`<br/>
-`pegroup`               = `pe-puppet`<br/>
-`archive_file_server`   = `$trusted['certname']`<br/>
-`module_groups`         = `base+pe_only`<br/>
-`environmentpath`       = `/etc/puppetlabs/code/environments`<br/>
-`app_management`        = `false`<br/>
-`node_terminus`         = `classifier`<br/>
-`storeconfigs`          = `true`<br/>
-`storeconfigs_backend`  = `puppetdb`<br/>
-`always_cache_features` = `true`<br/>
-`reports_to`            = `puppetdb`<br/>
-`graph`                 = `true`<br/>
+Class `puppetconf::baseconf::mom`:
+<table border = "0">
+<tr><td>`caserver`</td><td>=</td><td>`$trusted['certname']`</td></tr>
+<tr><td>`archive_files`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`peuser`</td><td>=</td><td>`pe-puppet`</td></tr>
+<tr><td>`pegroup`</td><td>=</td><td>`pe-puppet`</td></tr>
+<tr><td>`archive_file_server`</td><td>=</td><td>`$trusted['certname']`</td></tr>
+<tr><td>`module_groups`</td><td>=</td><td>`base+pe_only`</td></tr>
+<tr><td>`environmentpath`</td><td>=</td><td>`/etc/puppetlabs/code/environments`</td></tr>
+<tr><td>`app_management`</td><td>=</td><td>`false`</td></tr>
+<tr><td>`node_terminus`</td><td>=</td><td>`classifier`</td></tr>
+<tr><td>`storeconfigs`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`storeconfigs_backend`</td><td>=</td><td>`puppetdb`</td></tr>
+<tr><td>`always_cache_features`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`reports_to`</td><td>=</td><td>`puppetdb`</td></tr>
+<tr><td>`graph`</td><td>=</td><td>`true`</td></tr>
+</table>
 
-Class `puppetconf::baseconf::cm`:<br/>
-`master`                = `undef`<br/>
-`caserver`              = `undef`<br/>
-`module_groups`         = `base+pe_only`<br/>
-`peuser`                = `pe-puppet`<br/>
-`pegroup`               = `pe-puppet`<br/>
-`environmentpath`       = `/etc/puppetlabs/code/environments`<br/>
-`ca_boolean`            = `false`<br/>
-`app_management`        = `true`<br/>
-`node_terminus`         = `classifier`<br/>
-`storeconfigs`          = `true`<br/>
-`storeconfigs_backend`  = `puppetdb`<br/>
-`always_cache_features` = `true`<br/>
-`reports_to`            = `puppetdb`<br/>
+Class `puppetconf::baseconf::cm`:
+<table border = "0">
+<tr><td>`master`</td><td>=</td><td>`undef`</td></tr>
+<tr><td>`caserver`</td><td>=</td><td>`undef`</td></tr>
+<tr><td>`module_groups`</td><td>=</td><td>`base+pe_only`</td></tr>
+<tr><td>`peuser`</td><td>=</td><td>`pe-puppet`</td></tr>
+<tr><td>`pegroup`</td><td>=</td><td>`pe-puppet`</td></tr>
+<tr><td>`environmentpath`</td><td>=</td><td>`/etc/puppetlabs/code/environments`</td></tr>
+<tr><td>`ca_boolean`</td><td>=</td><td>`false`</td></tr>
+<tr><td>`app_management`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`node_terminus`</td><td>=</td><td>`classifier`</td></tr>
+<tr><td>`storeconfigs`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`storeconfigs_backend`</td><td>=</td><td>`puppetdb`</td></tr>
+<tr><td>`always_cache_features`</td><td>=</td><td>`true`</td></tr>
+<tr><td>`reports_to`</td><td>=</td><td>`puppetdb`</td></tr>
+</table>
 
-Class `puppetconf::baseconf::agent`:<br/>
-`master`   = `undef`<br/>
-`caserver` = `undef`<br/>
+Class `puppetconf::baseconf::agent`:
+<table border = "0">
+<tr><td>`master`</td><td>=</td><td>`undef`</td></tr>
+<tr><td>`caserver`</td><td>=</td><td>`undef`</td></tr>
+</table>
 
-The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:<br/>
-`peuser`     -> `user`<br/>
-`pegroup`    -> `group`<br/>
-`caserver`   -> `ca_server`<br/>
-`ca_boolean` -> `ca`<br/>
-`reports_to` -> `reports`<br/>
+The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:
+<table border = "0">
+<tr><td>`peuser`</td><td>-></td><td>`user`</td></tr>
+<tr><td>`pegroup`</td><td>-></td><td>`group`</td></tr>
+<tr><td>`caserver`</td><td>-></td><td>`ca_server`</td></tr>
+<tr><td>`ca_boolean`</td><td>-></td><td>`ca`</td></tr>
+<tr><td>`reports_to`</td><td>-></td><td>`reports`</td></tr>
+</table>
 
 You may also visit the [Configuration Reference](https://docs.puppetlabs.com/references/latest/configuration.html) for further reference.
 
