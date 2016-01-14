@@ -1,6 +1,6 @@
 {
   "name": "cjtoolseram-puppetconf",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "cjtoolseram",
   "summary": "This puppet module to manage puppet.conf",
   "license": "Apache-2.0",
@@ -11,7 +11,10 @@
   "dependencies": [
     {"name":"puppetlabs-inifile","version_requirement":"1.4.2 >= 1.4.3"}
   ],
-  "operatingsystem_support": ["All OS which can install puppet agents"],
+  "operatingsystem_support": [{
+        "operatingsystem":"Any OS that runs Puppet Agent",
+        }
+      ],
   "data_provider": null
 }
 
