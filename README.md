@@ -126,7 +126,7 @@ environmentpath = /etc/puppetlabs/code/environments
 ca_server = pe-201531-master.puppetdebug.vlan
 
 [agent]
-    graph = true
+graph = true
 
 [master]
 app_management = true
