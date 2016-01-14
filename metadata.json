@@ -12,9 +12,8 @@
     {"name":"puppetlabs-inifile","version_requirement":"1.4.2 >= 1.4.3"}
   ],
   "operatingsystem_support": [{
-        "operatingsystem":"Any OS that runs Puppet Agent",
-        }
-      ],
+        "operatingsystem":"Any OS that runs Puppet Agent"
+        }],
   "data_provider": null
 }
 
