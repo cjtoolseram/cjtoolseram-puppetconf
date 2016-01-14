@@ -191,8 +191,8 @@ Class `puppetconf::baseconf::mom`:
 `graph`                 = `true`
 
 Class `puppetconf::baseconf::cm`:
-`master`                = <font color="red">`undef`</font>
-`caserver`              = <font color="red">`undef`</font>
+`master`                = `undef`
+`caserver`              = `undef`
 `module_groups`         = `base+pe_only`
 `peuser`                = `pe-puppet`
 `pegroup`               = `pe-puppet`
@@ -206,8 +206,8 @@ Class `puppetconf::baseconf::cm`:
 `reports_to`            = `puppetdb`
 
 Class `puppetconf::baseconf::agent`:
-`master`   = <font color="red">`undef`</font>
-`caserver` = <font color="red">`undef`</font>
+`master`   = `undef`
+`caserver` = `undef`
 
 The above variables have the same name as Puppetlabs configuration attributes. The only exceptions are:
 `peuser`     -> `user`
