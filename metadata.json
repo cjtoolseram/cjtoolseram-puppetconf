@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/cjtoolseram/cjtoolseram-puppetconf/issues",
   "tags": ["puppet", "config", "puppetconf", "puppetconfig"],
   "dependencies": [
-    {"name":"puppetlabs-inifile","version_requirement":"1.4.2 >= 1.4.3"}
+    {"name":"puppetlabs-inifile","version_requirement":">= 1.4.3"}
   ],
   "operatingsystem_support": [{
         "operatingsystem":"Any OS that runs Puppet Agent"
