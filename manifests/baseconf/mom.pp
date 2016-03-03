@@ -1,5 +1,6 @@
 #class for mom section with predefined values
 class puppetconf::baseconf::mom ($caserver = $::trusted['certname'],
+  $conf_path = '/etc/puppetlabs/puppet/puppet.conf',
   $archive_files = true,
   $peuser = 'pe-puppet',
   $pegroup = 'pe-puppet',
@@ -13,6 +14,20 @@ class puppetconf::baseconf::mom ($caserver = $::trusted['certname'],
   $always_cache_features = true,
   $reports_to = 'puppetdb',
   $graph = true){
+
+  #the define types defaults
+  Puppetconf::Main {
+    conf_path => $conf_path,
+  }
+
+  Puppetconf::Master {
+    conf_path => $conf_path,
+  }
+
+  Puppetconf::Agent {
+    conf_path => $conf_path,
+  }
+
   ## section main config
   puppetconf::main { 'certname':
     value     => $::trusted['certname'],
@@ -59,7 +74,7 @@ class puppetconf::baseconf::mom ($caserver = $::trusted['certname'],
   puppetconf::master {'node_terminus':
     value     => $node_terminus,
   }
-  
+
   if $storeconfigs {
     puppetconf::master {'storeconfigs':
       value     => $storeconfigs,

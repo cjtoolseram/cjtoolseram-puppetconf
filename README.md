@@ -68,6 +68,26 @@ puppetconf::main { 'certname':
 }
 ```
 
+Each of the above define types will require a default path to configuration file. Therefore, would suggest to add defaults or params for them. Examples as below:
+```
+$conf_path = '/etc/puppetlabs/puppet/puppet.conf'
+
+Puppetconf::Main {
+  conf_path => $conf_path,
+}
+
+Puppetconf::Master {
+  conf_path => $conf_path,
+}
+
+Puppetconf::Agent {
+  conf_path => $conf_path,
+}
+```
+
+Please refer to the [Config Directory](https://docs.puppetlabs.com/puppet/latest/reference/dirs_confdir.html) for more details.
+
+
 There are also base classes with specific set of configuration. You can just include them in your classifier.
 
 Master of Master:
@@ -183,6 +203,7 @@ Class `puppetconf::baseconf::mom`:
 <tr><td>archive_file_server</td><td> = </td><td>$trusted['certname']</td></tr>
 <tr><td>module_groups</td><td> = </td><td>base+pe_only</td></tr>
 <tr><td>environmentpath</td><td> = </td><td>/etc/puppetlabs/code/environments</td></tr>
+<tr><td>conf_path</td><td> = </td><td>/etc/puppetlabs/puppet/puppet.conf</td></tr>
 <tr><td>app_management</td><td> = </td><td>false</td></tr>
 <tr><td>node_terminus</td><td> = </td><td>classifier</td></tr>
 <tr><td>storeconfigs</td><td> = </td><td>true</td></tr>
@@ -201,6 +222,7 @@ Class `puppetconf::baseconf::cm`:
 <tr><td>peuser</td><td> = </td><td>pe-puppet</td></tr>
 <tr><td>pegroup</td><td> = </td><td>pe-puppet</td></tr>
 <tr><td>environmentpath</td><td> = </td><td>/etc/puppetlabs/code/environments</td></tr>
+<tr><td>conf_path</td><td> = </td><td>/etc/puppetlabs/puppet/puppet.conf</td></tr>
 <tr><td>ca_boolean</td><td> = </td><td>false</td></tr>
 <tr><td>app_management</td><td> = </td><td>true</td></tr>
 <tr><td>node_terminus</td><td> = </td><td>classifier</td></tr>
@@ -216,6 +238,7 @@ Class `puppetconf::baseconf::agent`:
 <table border = "0">
 <tr><td>master</td><td> = </td><td>undef</td></tr>
 <tr><td>caserver</td><td> = </td><td>undef</td></tr>
+<tr><td>conf_path</td><td> = </td><td>/etc/puppetlabs/puppet/puppet.conf</td></tr>
 </table>
 <br/>
 
@@ -226,6 +249,7 @@ The above variables have the same name as Puppetlabs configuration attributes. T
 <tr><td>caserver</td><td> -> </td><td>ca_server</td></tr>
 <tr><td>ca_boolean</td><td> -> </td><td>ca</td></tr>
 <tr><td>reports_to</td><td> -> </td><td>reports</td></tr>
+<tr><td>conf_path</td><td> = </td><td>confdir</td></tr>
 </table>
 <br/>
 
@@ -238,4 +262,3 @@ This module will only manage puppet.conf file but will not do any installation o
 ## Development
 
 Feel free to hack around and pull request to add any improvement. Don't be shy!
-

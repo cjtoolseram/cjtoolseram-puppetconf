@@ -1,6 +1,6 @@
 {
   "name": "cjtoolseram-puppetconf",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "cjtoolseram",
   "summary": "This puppet module to manage puppet.conf",
   "license": "Apache-2.0",
@@ -16,4 +16,3 @@
         }],
   "data_provider": null
 }
-

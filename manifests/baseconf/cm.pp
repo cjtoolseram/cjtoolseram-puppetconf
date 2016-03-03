@@ -1,5 +1,6 @@
 #class for cm section with predefined values
 class puppetconf::baseconf::cm ($master = undef,
+  $conf_path = '/etc/puppetlabs/puppet/puppet.conf',
   $caserver = undef,
   $module_groups = 'base+pe_only',
   $peuser = 'pe-puppet',
@@ -12,6 +13,20 @@ class puppetconf::baseconf::cm ($master = undef,
   $storeconfigs_backend = 'puppetdb',
   $reports_to = 'puppetdb',
   $always_cache_features = true){
+
+  #the define types defaults
+  Puppetconf::Main {
+    conf_path => $conf_path,
+  }
+
+  Puppetconf::Master {
+    conf_path => $conf_path,
+  }
+
+  Puppetconf::Agent {
+    conf_path => $conf_path,
+  }
+
   ## section main config
   puppetconf::main { 'server':
     value     => $master,

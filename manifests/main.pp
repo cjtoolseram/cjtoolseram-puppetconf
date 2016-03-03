@@ -1,9 +1,10 @@
 #define types for section main
 define puppetconf::main ($value,
-  $attribute = $title) {
+  $attribute = $title,
+  $conf_path) {
   ini_setting { "main - ${attribute}":
     ensure  => present,
-    path    => '/etc/puppetlabs/puppet/puppet.conf',
+    path    => $conf_path,
     section => 'main',
     setting => $attribute,
     value   => $value,
