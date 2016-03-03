@@ -249,7 +249,7 @@ The above variables have the same name as Puppetlabs configuration attributes. T
 <tr><td>caserver</td><td> -> </td><td>ca_server</td></tr>
 <tr><td>ca_boolean</td><td> -> </td><td>ca</td></tr>
 <tr><td>reports_to</td><td> -> </td><td>reports</td></tr>
-<tr><td>conf_path</td><td> = </td><td>confdir</td></tr>
+<tr><td>conf_path</td><td> -> </td><td>confdir</td></tr>
 </table>
 <br/>
 
