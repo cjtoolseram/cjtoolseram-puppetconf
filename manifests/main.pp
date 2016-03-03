@@ -1,7 +1,7 @@
 #define types for section main
 define puppetconf::main ($value,
-  $attribute = $title,
-  $conf_path) {
+  $conf_path,
+  $attribute = $title) {
   ini_setting { "main - ${attribute}":
     ensure  => present,
     path    => $conf_path,

@@ -1,7 +1,7 @@
 #define types for section agent
 define puppetconf::agent ($value,
-  $attribute = $title,
-  $conf_path) {
+  $conf_path,
+  $attribute = $title) {
   ini_setting { "agent - ${attribute}":
     ensure  => present,
     path    => $conf_path,
