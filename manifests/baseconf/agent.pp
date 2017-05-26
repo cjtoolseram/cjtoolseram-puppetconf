@@ -2,6 +2,7 @@
 class puppetconf::baseconf::agent ($master = undef,
   $conf_path = '/etc/puppetlabs/puppet/puppet.conf',
   $caserver = undef,
+  $runinterval = '30m',
   ){
 
   #the define types defaults
@@ -20,6 +21,10 @@ class puppetconf::baseconf::agent ($master = undef,
 
   puppetconf::main { 'ca_server':
     value     => $caserver,
+  }
+  
+  puppetconf::main { 'runinterval':
+    value     => $runinterval,
   }
 
   ## section agent config
