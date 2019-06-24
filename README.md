@@ -239,6 +239,8 @@ Class `puppetconf::baseconf::agent`:
 <tr><td>master</td><td> = </td><td>undef</td></tr>
 <tr><td>caserver</td><td> = </td><td>undef</td></tr>
 <tr><td>conf_path</td><td> = </td><td>/etc/puppetlabs/puppet/puppet.conf</td></tr>
+<tr><td>environment</td><td> = </td><td>production</td></tr>
+<tr><td>runinterval</td><td> = </td><td>30m</td></tr>
 </table>
 <br/>
 
